@@ -1,0 +1,63 @@
+devices:
+  csr1000v-1:
+    connections:
+      a:
+        command: mock_device_cli --os iosxe --mock_data_dir /home/developer/files/mock_data/working/iosxe --state connect
+        arguments:
+            init_exec_commands: []
+            init_config_commands: []
+      defaults:
+        class: unicon.Unicon
+    credentials:
+      default:
+        password: cisco
+        username: admin
+    os: iosxe
+    platform: csr1000v
+    type: router
+  nx-osv-1:
+    connections:
+      a:
+        command: mock_device_cli --os nxos --mock_data_dir /home/developer/files/mock_data/working/nxos --state connect
+        arguments:
+            init_exec_commands: []
+            init_config_commands: []
+      defaults:
+        class: unicon.Unicon
+    credentials:
+      default:
+        password: admin
+        username: admin
+    os: nxos
+    type: switch
+testbed:
+  name: DevNet Workshop Lab - Introduction to pyATS
+topology:
+  csr1000v-1:
+    interfaces:
+      GigabitEthernet1:
+        link: l0
+        type: ethernet
+      GigabitEthernet2:
+        link: l1
+        type: ethernet
+      GigabitEthernet3:
+        type: ethernet
+      GigabitEthernet4:
+        type: ethernet
+      Loopback0:
+        type: loopback
+  nx-osv-1:
+    interfaces:
+      Ethernet2/1:
+        link: l0
+        type: ethernet
+      Ethernet2/2:
+        link: l1
+        type: ethernet
+      Ethernet2/3:
+        type: ethernet
+      Loopback0:
+        type: loopback
+      mgmt0:
+        type: ethernet
